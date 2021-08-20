@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const { Project } = require('../../models');
 
+router.get('/', (req,res) => {
+  Project.findAll({}).then(response => res.json(response))
+})
+
 router.post('/', async (req, res) => {
   try {
     const newProject = await Project.create({
