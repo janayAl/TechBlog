@@ -14,14 +14,14 @@ router.get("/", async (req, res) => {
 });
 
 // get a blog post 
-router.get("/BlogPost, (req, res) => {
-    try {
-    res.render("blog-post");
-} catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-}
-});
+// router.get("/BlogPost, (req, res) => {
+//     try {
+//     res.render("blog-post");
+// } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+// }
+// });
 
 // Login route
 router.get("/login", (req, res) => {
