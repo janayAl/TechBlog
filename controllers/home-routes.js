@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-// volunteer-signup form
+// get a blog post 
 router.get("/BlogPost, (req, res) => {
     try {
     res.render("blog-post");
@@ -32,7 +32,7 @@ router.get("/login", (req, res) => {
     res.render("login-page");
 });
 
-//logs org out
+//logs user out
 router.post("/logout", (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
@@ -64,5 +64,4 @@ router.get("/profile", withAuth, async (req, res) => {
     }
 });
 
-//add route for logout
 module.exports = router;
