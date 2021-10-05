@@ -3,7 +3,17 @@ const { BlogPost } = require('../../models');
 
 router.get('/', (req, res) => {
   BlogPost.findAll({}).then(response => res.json(response))
-})
+});
+
+router.get('/:id', (req, res) => {
+  BlogPost.findAll({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(response => res.json(response))
+
+});
 
 router.post('/', async (req, res) => {
   try {
@@ -17,6 +27,20 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+router.put('/:id', (req, res) => {
+  BlogPost.update({
+    ...req.body,
+    user_id: req.session.user_id.
+
+  }, {
+    where: {
+      id: req.params.id
+    }
+  }).then(BlogPost => {
+    res.json(BlogPost);
+  })
+})
 
 router.delete('/:id', async (req, res) => {
   try {
