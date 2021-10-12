@@ -2,17 +2,15 @@ const router = require('express').Router();
 const { BlogPost } = require('../../models');
 
 router.get('/', (req, res) => {
-  BlogPost.findAll({}).then(response => res.json(response))
+  BlogPost.findAll({}).then((response) => res.json(response));
 });
 
 router.get('/:id', (req, res) => {
   BlogPost.findAll({
     where: {
-      id: req.params.id
-    }
-  })
-    .then(response => res.json(response))
-
+      id: req.params.id,
+    },
+  }).then((response) => res.json(response));
 });
 
 router.post('/', async (req, res) => {
@@ -29,18 +27,20 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  BlogPost.update({
-    ...req.body,
-    user_id: req.session.user_id.
-
-  }, {
-    where: {
-      id: req.params.id
+  BlogPost.update(
+    {
+      ...req.body,
+      user_id: req.session.user_id,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
     }
-  }).then(BlogPost => {
+  ).then((BlogPost) => {
     res.json(BlogPost);
-  })
-})
+  });
+});
 
 router.delete('/:id', async (req, res) => {
   try {
