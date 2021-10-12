@@ -24,11 +24,20 @@ const sess = {
 
 app.use(session(sess));
 
+const helpers = require('./utils/helpers');
+const hbs = exphbs.create({ helpers });
+
+//connect to handlebars
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+//express middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
+//routes
 app.use(routes);
-
+//connects the db and server
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
